@@ -1,0 +1,9 @@
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\bin\Debug\AlphabetPerceptron.exe.config
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\bin\Debug\AlphabetPerceptron.exe
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\bin\Debug\AlphabetPerceptron.pdb
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.csprojResolveAssemblyReference.cache
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.Form1.resources
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.Properties.Resources.resources
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.csproj.GenerateResource.Cache
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.exe
+c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.pdb
