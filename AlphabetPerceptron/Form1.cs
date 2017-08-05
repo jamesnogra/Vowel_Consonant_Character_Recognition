@@ -14,6 +14,7 @@ namespace AlphabetPerceptron
     {
         List<Alphabet> allAlphabet;
         bool[,] picBoxes;
+        Color highlightColor;
 
         public Form1()
         {
@@ -23,6 +24,7 @@ namespace AlphabetPerceptron
         private void Form1_Load(object sender, EventArgs e)
         {
             loadLettersText();
+            highlightColor = Color.Red;
             picBoxes = new bool[7, 5];
             for (int x=0; x<7; x++)
             {
@@ -67,7 +69,16 @@ namespace AlphabetPerceptron
 
         private void p11_Click(object sender, EventArgs e)
         {
-
+            if (picBoxes[1, 1])
+            {
+                p11.BackColor = Color.White;
+                picBoxes[1, 1] = false;
+            }
+            else
+            {
+                p11.BackColor = highlightColor;
+                picBoxes[1, 1] = true;
+            }
         }
     }
 
