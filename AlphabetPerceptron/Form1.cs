@@ -13,6 +13,7 @@ namespace AlphabetPerceptron
     public partial class Form1 : Form
     {
         List<Alphabet> allAlphabet;
+        bool[,] picBoxes;
 
         public Form1()
         {
@@ -22,6 +23,14 @@ namespace AlphabetPerceptron
         private void Form1_Load(object sender, EventArgs e)
         {
             loadLettersText();
+            picBoxes = new bool[7, 5];
+            for (int x=0; x<7; x++)
+            {
+                for (int y=0; y<5; y++)
+                {
+                    picBoxes[x, y] = false;
+                }
+            }
         }
 
         //load the letters Text
@@ -55,6 +64,11 @@ namespace AlphabetPerceptron
                 count++;
             }
         }
+
+        private void p11_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class Alphabet
@@ -69,7 +83,9 @@ namespace AlphabetPerceptron
         }
         public override string ToString()
         {
-            return "Letter: " + this.letter + "\nType: " + this.type + "\nPattern: " + this.pattern;
+            string temp = "";
+            temp += "Letter: " + this.letter + "\nType: " + this.type + "\nPattern: " + this.pattern;
+            return temp;
         }
     }
 }
