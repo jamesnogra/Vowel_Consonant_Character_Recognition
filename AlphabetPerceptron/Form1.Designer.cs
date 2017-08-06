@@ -65,6 +65,10 @@
             this.p75 = new System.Windows.Forms.PictureBox();
             this.testBtn = new System.Windows.Forms.Button();
             this.trainBtn = new System.Windows.Forms.Button();
+            this.resetBtn = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.drawBtn = new System.Windows.Forms.Button();
+            this.letterInput = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.p11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p13)).BeginInit();
@@ -100,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.p73)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p74)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p75)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // p11
@@ -122,6 +127,7 @@
             this.p12.Size = new System.Drawing.Size(39, 38);
             this.p12.TabIndex = 1;
             this.p12.TabStop = false;
+            this.p12.Click += new System.EventHandler(this.p12_Click);
             // 
             // p13
             // 
@@ -132,6 +138,7 @@
             this.p13.Size = new System.Drawing.Size(39, 38);
             this.p13.TabIndex = 2;
             this.p13.TabStop = false;
+            this.p13.Click += new System.EventHandler(this.p13_Click);
             // 
             // p14
             // 
@@ -142,6 +149,7 @@
             this.p14.Size = new System.Drawing.Size(39, 38);
             this.p14.TabIndex = 3;
             this.p14.TabStop = false;
+            this.p14.Click += new System.EventHandler(this.p14_Click);
             // 
             // p15
             // 
@@ -152,6 +160,7 @@
             this.p15.Size = new System.Drawing.Size(39, 38);
             this.p15.TabIndex = 4;
             this.p15.TabStop = false;
+            this.p15.Click += new System.EventHandler(this.p15_Click);
             // 
             // p21
             // 
@@ -162,6 +171,7 @@
             this.p21.Size = new System.Drawing.Size(39, 38);
             this.p21.TabIndex = 5;
             this.p21.TabStop = false;
+            this.p21.Click += new System.EventHandler(this.p21_Click);
             // 
             // p22
             // 
@@ -172,6 +182,7 @@
             this.p22.Size = new System.Drawing.Size(39, 38);
             this.p22.TabIndex = 6;
             this.p22.TabStop = false;
+            this.p22.Click += new System.EventHandler(this.p22_Click);
             // 
             // p23
             // 
@@ -182,6 +193,7 @@
             this.p23.Size = new System.Drawing.Size(39, 38);
             this.p23.TabIndex = 7;
             this.p23.TabStop = false;
+            this.p23.Click += new System.EventHandler(this.p23_Click);
             // 
             // p24
             // 
@@ -192,6 +204,7 @@
             this.p24.Size = new System.Drawing.Size(39, 38);
             this.p24.TabIndex = 8;
             this.p24.TabStop = false;
+            this.p24.Click += new System.EventHandler(this.p24_Click);
             // 
             // p25
             // 
@@ -202,6 +215,7 @@
             this.p25.Size = new System.Drawing.Size(39, 38);
             this.p25.TabIndex = 9;
             this.p25.TabStop = false;
+            this.p25.Click += new System.EventHandler(this.p25_Click);
             // 
             // p31
             // 
@@ -212,6 +226,7 @@
             this.p31.Size = new System.Drawing.Size(39, 38);
             this.p31.TabIndex = 10;
             this.p31.TabStop = false;
+            this.p31.Click += new System.EventHandler(this.p31_Click);
             // 
             // p32
             // 
@@ -222,6 +237,7 @@
             this.p32.Size = new System.Drawing.Size(39, 38);
             this.p32.TabIndex = 11;
             this.p32.TabStop = false;
+            this.p32.Click += new System.EventHandler(this.p32_Click);
             // 
             // p33
             // 
@@ -232,6 +248,7 @@
             this.p33.Size = new System.Drawing.Size(39, 38);
             this.p33.TabIndex = 12;
             this.p33.TabStop = false;
+            this.p33.Click += new System.EventHandler(this.p33_Click);
             // 
             // p34
             // 
@@ -242,6 +259,7 @@
             this.p34.Size = new System.Drawing.Size(39, 38);
             this.p34.TabIndex = 13;
             this.p34.TabStop = false;
+            this.p34.Click += new System.EventHandler(this.p34_Click);
             // 
             // p35
             // 
@@ -252,6 +270,7 @@
             this.p35.Size = new System.Drawing.Size(39, 38);
             this.p35.TabIndex = 14;
             this.p35.TabStop = false;
+            this.p35.Click += new System.EventHandler(this.p35_Click);
             // 
             // p41
             // 
@@ -262,6 +281,7 @@
             this.p41.Size = new System.Drawing.Size(39, 38);
             this.p41.TabIndex = 15;
             this.p41.TabStop = false;
+            this.p41.Click += new System.EventHandler(this.p41_Click);
             // 
             // p42
             // 
@@ -272,6 +292,7 @@
             this.p42.Size = new System.Drawing.Size(39, 38);
             this.p42.TabIndex = 16;
             this.p42.TabStop = false;
+            this.p42.Click += new System.EventHandler(this.p42_Click);
             // 
             // p43
             // 
@@ -282,6 +303,7 @@
             this.p43.Size = new System.Drawing.Size(39, 38);
             this.p43.TabIndex = 17;
             this.p43.TabStop = false;
+            this.p43.Click += new System.EventHandler(this.p43_Click);
             // 
             // p44
             // 
@@ -292,6 +314,7 @@
             this.p44.Size = new System.Drawing.Size(39, 38);
             this.p44.TabIndex = 18;
             this.p44.TabStop = false;
+            this.p44.Click += new System.EventHandler(this.p44_Click);
             // 
             // p45
             // 
@@ -302,6 +325,7 @@
             this.p45.Size = new System.Drawing.Size(39, 38);
             this.p45.TabIndex = 19;
             this.p45.TabStop = false;
+            this.p45.Click += new System.EventHandler(this.p45_Click);
             // 
             // p51
             // 
@@ -312,6 +336,7 @@
             this.p51.Size = new System.Drawing.Size(39, 38);
             this.p51.TabIndex = 20;
             this.p51.TabStop = false;
+            this.p51.Click += new System.EventHandler(this.p51_Click);
             // 
             // p52
             // 
@@ -322,6 +347,7 @@
             this.p52.Size = new System.Drawing.Size(39, 38);
             this.p52.TabIndex = 21;
             this.p52.TabStop = false;
+            this.p52.Click += new System.EventHandler(this.p52_Click);
             // 
             // p53
             // 
@@ -332,6 +358,7 @@
             this.p53.Size = new System.Drawing.Size(39, 38);
             this.p53.TabIndex = 22;
             this.p53.TabStop = false;
+            this.p53.Click += new System.EventHandler(this.p53_Click);
             // 
             // p54
             // 
@@ -342,6 +369,7 @@
             this.p54.Size = new System.Drawing.Size(39, 38);
             this.p54.TabIndex = 23;
             this.p54.TabStop = false;
+            this.p54.Click += new System.EventHandler(this.p54_Click);
             // 
             // p55
             // 
@@ -352,6 +380,7 @@
             this.p55.Size = new System.Drawing.Size(39, 38);
             this.p55.TabIndex = 24;
             this.p55.TabStop = false;
+            this.p55.Click += new System.EventHandler(this.p55_Click);
             // 
             // p61
             // 
@@ -362,6 +391,7 @@
             this.p61.Size = new System.Drawing.Size(39, 38);
             this.p61.TabIndex = 25;
             this.p61.TabStop = false;
+            this.p61.Click += new System.EventHandler(this.p61_Click);
             // 
             // p62
             // 
@@ -372,6 +402,7 @@
             this.p62.Size = new System.Drawing.Size(39, 38);
             this.p62.TabIndex = 26;
             this.p62.TabStop = false;
+            this.p62.Click += new System.EventHandler(this.p62_Click);
             // 
             // p63
             // 
@@ -382,6 +413,7 @@
             this.p63.Size = new System.Drawing.Size(39, 38);
             this.p63.TabIndex = 27;
             this.p63.TabStop = false;
+            this.p63.Click += new System.EventHandler(this.p63_Click);
             // 
             // p64
             // 
@@ -392,6 +424,7 @@
             this.p64.Size = new System.Drawing.Size(39, 38);
             this.p64.TabIndex = 28;
             this.p64.TabStop = false;
+            this.p64.Click += new System.EventHandler(this.p64_Click);
             // 
             // p65
             // 
@@ -402,6 +435,7 @@
             this.p65.Size = new System.Drawing.Size(39, 38);
             this.p65.TabIndex = 29;
             this.p65.TabStop = false;
+            this.p65.Click += new System.EventHandler(this.p65_Click);
             // 
             // p71
             // 
@@ -412,6 +446,7 @@
             this.p71.Size = new System.Drawing.Size(39, 38);
             this.p71.TabIndex = 30;
             this.p71.TabStop = false;
+            this.p71.Click += new System.EventHandler(this.p71_Click);
             // 
             // p72
             // 
@@ -422,6 +457,7 @@
             this.p72.Size = new System.Drawing.Size(39, 38);
             this.p72.TabIndex = 31;
             this.p72.TabStop = false;
+            this.p72.Click += new System.EventHandler(this.p72_Click);
             // 
             // p73
             // 
@@ -432,6 +468,7 @@
             this.p73.Size = new System.Drawing.Size(39, 38);
             this.p73.TabIndex = 32;
             this.p73.TabStop = false;
+            this.p73.Click += new System.EventHandler(this.p73_Click);
             // 
             // p74
             // 
@@ -442,6 +479,7 @@
             this.p74.Size = new System.Drawing.Size(39, 38);
             this.p74.TabIndex = 33;
             this.p74.TabStop = false;
+            this.p74.Click += new System.EventHandler(this.p74_Click);
             // 
             // p75
             // 
@@ -452,30 +490,75 @@
             this.p75.Size = new System.Drawing.Size(39, 38);
             this.p75.TabIndex = 34;
             this.p75.TabStop = false;
+            this.p75.Click += new System.EventHandler(this.p75_Click);
             // 
             // testBtn
             // 
-            this.testBtn.Location = new System.Drawing.Point(125, 318);
+            this.testBtn.Location = new System.Drawing.Point(126, 318);
             this.testBtn.Name = "testBtn";
-            this.testBtn.Size = new System.Drawing.Size(104, 38);
+            this.testBtn.Size = new System.Drawing.Size(103, 38);
             this.testBtn.TabIndex = 35;
             this.testBtn.Text = "Test";
             this.testBtn.UseVisualStyleBackColor = true;
+            this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
             // 
             // trainBtn
             // 
             this.trainBtn.Location = new System.Drawing.Point(10, 318);
             this.trainBtn.Name = "trainBtn";
-            this.trainBtn.Size = new System.Drawing.Size(109, 38);
+            this.trainBtn.Size = new System.Drawing.Size(110, 38);
             this.trainBtn.TabIndex = 36;
             this.trainBtn.Text = "Train";
             this.trainBtn.UseVisualStyleBackColor = true;
+            this.trainBtn.Click += new System.EventHandler(this.trainBtn_Click);
+            // 
+            // resetBtn
+            // 
+            this.resetBtn.Location = new System.Drawing.Point(235, 10);
+            this.resetBtn.Name = "resetBtn";
+            this.resetBtn.Size = new System.Drawing.Size(112, 38);
+            this.resetBtn.TabIndex = 37;
+            this.resetBtn.Text = "Reset";
+            this.resetBtn.UseVisualStyleBackColor = true;
+            this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.drawBtn);
+            this.groupBox1.Controls.Add(this.letterInput);
+            this.groupBox1.Location = new System.Drawing.Point(236, 55);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(111, 89);
+            this.groupBox1.TabIndex = 38;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Draw Letter";
+            // 
+            // drawBtn
+            // 
+            this.drawBtn.Location = new System.Drawing.Point(7, 58);
+            this.drawBtn.Name = "drawBtn";
+            this.drawBtn.Size = new System.Drawing.Size(98, 23);
+            this.drawBtn.TabIndex = 1;
+            this.drawBtn.Text = "Draw";
+            this.drawBtn.UseVisualStyleBackColor = true;
+            this.drawBtn.Click += new System.EventHandler(this.drawBtn_Click);
+            // 
+            // letterInput
+            // 
+            this.letterInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.letterInput.Location = new System.Drawing.Point(7, 16);
+            this.letterInput.Name = "letterInput";
+            this.letterInput.Size = new System.Drawing.Size(98, 35);
+            this.letterInput.TabIndex = 0;
+            this.letterInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(240, 362);
+            this.ClientSize = new System.Drawing.Size(356, 362);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.resetBtn);
             this.Controls.Add(this.trainBtn);
             this.Controls.Add(this.testBtn);
             this.Controls.Add(this.p75);
@@ -553,6 +636,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.p73)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p74)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.p75)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -596,6 +681,10 @@
         private System.Windows.Forms.PictureBox p75;
         private System.Windows.Forms.Button testBtn;
         private System.Windows.Forms.Button trainBtn;
+        private System.Windows.Forms.Button resetBtn;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button drawBtn;
+        private System.Windows.Forms.TextBox letterInput;
     }
 }
 

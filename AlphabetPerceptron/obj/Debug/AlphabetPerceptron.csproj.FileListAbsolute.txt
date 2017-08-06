@@ -7,3 +7,4 @@ c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\Alphabet
 c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.csproj.GenerateResource.Cache
 c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.exe
 c:\users\james\documents\visual studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\obj\Debug\AlphabetPerceptron.pdb
+C:\Users\James\Documents\Visual Studio 2017\Projects\AlphabetPerceptron\AlphabetPerceptron\bin\Debug\Letters.txt
