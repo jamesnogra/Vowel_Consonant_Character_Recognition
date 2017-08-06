@@ -57,12 +57,6 @@ namespace AlphabetPerceptron
                 //MessageBox.Show("Letter: " + allAlphabet[x].letter + "\nType: " + desired[x]);
             }
 
-            
-            for (int x=0; x<wts.Length; x++)
-            {
-                wts[x] = rnd.NextDouble();
-            }
-
             highlightColor = Color.CadetBlue;
             picBoxes = new bool[7, 5];
             for (int x=0; x<7; x++)
@@ -85,6 +79,12 @@ namespace AlphabetPerceptron
             int pn; //represents the pattern number
             inputs = new double[patternLength];
             int[] pat_used = new int[length];
+
+            //we reset the weights every time we click the train button
+            for (int x = 0; x < wts.Length; x++)
+            {
+                wts[x] = rnd.NextDouble();
+            }
 
             while (error > 0 && epochs < max_epoch)
             {
@@ -161,11 +161,11 @@ namespace AlphabetPerceptron
 
             if (v>=0)
             {
-                MessageBox.Show("1 or VOWEL");
+                MessageBox.Show("VOWEL (v>=0)");
             }
             else
             {
-                MessageBox.Show("1 or CONSONANT");
+                MessageBox.Show("CONSONANT (v<0)");
             }
         }
 
@@ -535,6 +535,75 @@ namespace AlphabetPerceptron
                     else { p74.BackColor = Color.White; picBoxes[6, 3] = false; }
                     if (selectedPattern[34] == '1') { p75.BackColor = highlightColor; picBoxes[6, 4] = true; }
                     else { p75.BackColor = Color.White; picBoxes[6, 4] = false; }
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string tempStr = "";
+            for (int x=0; x<allAlphabet.Count; x++)
+            {
+                tempStr += "Letter: " + allAlphabet[x].letter + "\t\t";
+                tempStr += "Pattern: " + allAlphabet[x].pattern + "\t\t";
+                tempStr += "Desired: " + desired[x] + "\n";
+            }
+            MessageBox.Show(tempStr, "Letter, Pattern, and Desired Output");
+        }
+
+        private void changeDesiredBtn_Click(object sender, EventArgs e)
+        {
+            for (int x=0; x<allAlphabet.Count; x++)
+            {
+                desired[x] = 0;
+                if (testLetter.Text.Length==1 && Char.ToLower(allAlphabet[x].letter) == Char.ToLower(Convert.ToChar(testLetter.Text)))
+                {
+                    desired[x] = 1;
+                }
+            }
+        }
+
+        private void testLetterBtn_Click(object sender, EventArgs e)
+        {
+            double v = 0;
+            int[] allInputs = new int[wts.Length];
+            int counter = 0;
+
+            //get all inputs for v
+            for (int x = 0; x < 7; x++)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    allInputs[counter] = ((picBoxes[x, y]) ? 1 : 0);
+                    counter++;
+                }
+            }
+
+            //calculate for v
+            for (int x = 0; x < allInputs.Length; x++)
+            {
+                v += allInputs[x] * wts[x];
+            }
+            v += bias;
+
+            if (v >= 0)
+            {
+                MessageBox.Show("Yes, that is the letter " + testLetter.Text + ".");
+            }
+            else
+            {
+                MessageBox.Show("No, that is NOT the letter " + testLetter.Text + ".");
+            }
+        }
+
+        private void trainVowelConsonant_Click(object sender, EventArgs e)
+        {
+            for (int x = 0; x < allAlphabet.Count; x++)
+            {
+                desired[x] = 0;
+                if (allAlphabet[x].type == "Vowel")
+                {
+                    desired[x] = 1;
                 }
             }
         }
