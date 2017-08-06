@@ -19,7 +19,7 @@ namespace AlphabetPerceptron
         double[] wts;
         double[] inputs;
         double bias;
-        double learning_rate = 0.001;
+        double learning_rate = 0.005;
         int output;
         byte[] desired;
         byte[,] patterns;
@@ -140,16 +140,18 @@ namespace AlphabetPerceptron
         {
             double v = 0;
             int[] allInputs = new int[wts.Length];
+            int counter = 0;
 
             //get all inputs for v
             for (int x=0; x<7; x++)
             {
                 for (int y=0; y<5; y++)
                 {
-                    allInputs[(x + 1) * y] = ((picBoxes[x,y]) ? 1 : 0);
+                    allInputs[counter] = ((picBoxes[x,y]) ? 1 : 0);
+                    counter++;
                 }
             }
-
+            
             //calculate for v
             for (int x=0; x<allInputs.Length; x++)
             {
