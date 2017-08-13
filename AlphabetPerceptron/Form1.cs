@@ -16,13 +16,17 @@ namespace AlphabetPerceptron
         bool[,] picBoxes;
         Color highlightColor;
         Random rnd;
-        double[] wts;
+        int number_of_inputs = 35;
+        int number_of_neurons = 8;
+        double[,] wts;
         double[] inputs;
-        double bias;
-        double learning_rate = 0.005;
-        int output;
-        byte[] desired;
+        double[] bias;
+        double[] delta;
+        double learning_rate = 0.01;
+        int[] outputs;
+        byte[,] desired;
         byte[,] patterns;
+        string trainFor = "CONSONANT_VOWEL";
 
         public Form1()
         {
@@ -32,32 +36,43 @@ namespace AlphabetPerceptron
         private void Form1_Load(object sender, EventArgs e)
         {
             loadLettersText();
+            highlightColor = Color.CadetBlue;
 
             //initialize the data
             int patternLength = allAlphabet[0].pattern.Length;
             rnd = new Random();
-            //MessageBox.Show(allAlphabet[0].pattern.Length+"");
             patterns = new byte[allAlphabet.Count, patternLength];
-            desired = new byte[allAlphabet.Count];
-            bias = rnd.NextDouble();
-            wts = new double[patternLength];
+            desired = new byte[patternLength, number_of_neurons];
+            outputs = new int[number_of_neurons];
+            bias = new double[number_of_neurons];
+            delta = new double[number_of_neurons];
+            wts = new double[number_of_neurons, number_of_inputs];
 
-            //initialize the pattern, bias, and desired output
+            //random for weights and bias
+            for (int x=0; x<number_of_neurons; x++)
+            {
+                bias[x] = rnd.NextDouble();
+                for (int y = 0; y<number_of_inputs; y++)
+                {
+                    wts[x,y] = rnd.NextDouble();
+                }
+            }
+            
+            //initialize the pattern, desired output
             for (int x=0; x<allAlphabet.Count; x++)
             {
                 for (int y=0; y<patternLength; y++)
                 {
                     patterns[x, y] = (byte)Char.GetNumericValue(allAlphabet[x].pattern[y]);
                 }
-                desired[x] = 0; //set all letters to consonant
-                if (allAlphabet[x].type == "Vowel")
+                for (int y=0; y< number_of_neurons; y++)
                 {
-                    desired[x] = 1;
+                    desired[x,y] = allAlphabet[x].type[y];
                 }
                 //MessageBox.Show("Letter: " + allAlphabet[x].letter + "\nType: " + desired[x]);
             }
 
-            highlightColor = Color.CadetBlue;
+            //initialize the boolean of inputs
             picBoxes = new bool[7, 5];
             for (int x=0; x<7; x++)
             {
@@ -68,12 +83,11 @@ namespace AlphabetPerceptron
             }
         }
 
-        private void trainBtn_Click(object sender, EventArgs e)
+        private void trainPerceptron()
         {
             int length = allAlphabet.Count;
             int patternLength = allAlphabet[0].pattern.Length;
-            double v;
-            double delta;
+            double v = 0;
             int max_epoch = 100000, epochs = 0;
             int error = 10;
             int pn; //represents the pattern number
@@ -81,54 +95,74 @@ namespace AlphabetPerceptron
             int[] pat_used = new int[length];
 
             //we reset the weights every time we click the train button
-            for (int x = 0; x < wts.Length; x++)
+            for (int x = 0; x < number_of_neurons; x++)
             {
-                wts[x] = rnd.NextDouble();
+                for (int y = 0; y < number_of_inputs; y++)
+                {
+                    wts[x, y] = rnd.NextDouble();
+                }
+            }
+
+            for (int x = 0; x < allAlphabet.Count; x++)
+            {
+                for (int y = 0; y < number_of_neurons; y++)
+                {
+                    if (trainFor == "CONSONANT_VOWEL")
+                    {
+                        desired[x, y] = allAlphabet[x].type[y];
+                    }
+                    else if (trainFor == "CHARACTER")
+                    {
+                        desired[x, y] = allAlphabet[x].indexOutput[y];
+                    }
+                }
             }
 
             while (error > 0 && epochs < max_epoch)
             {
                 //set all pat_used to 0 every epoch also error
                 error = 0;
-                for (int x=0; x<length; x++)
+                for (int x = 0; x < length; x++)
                 {
                     pat_used[x] = 0;
                 }
 
-                for (int x=0; x<length; x++)
+                for (int x = 0; x < length; x++)
                 {
                     pn = rnd.Next(length);
-                    while (pat_used[pn]==1)
+                    while (pat_used[pn] == 1)
                     {
                         pn = rnd.Next(length);
                     }
-                    for (int y=0; y<patternLength; y++)
+                    for (int y = 0; y < patternLength; y++)
                     {
                         //MessageBox.Show("At pattern " + pn + " and index " + y);
                         inputs[y] = patterns[pn, y];
                     }
                     pat_used[pn] = 1; //mark this pattern that we've used it
 
-                    v = 0.0;
-                    for (int j=0; j<patternLength; j++)
+                    for (int j = 0; j < number_of_neurons; j++)
                     {
-                        v += inputs[j] * wts[j];
-                    }
-                    v += bias;
-                    if (v >= 0) output = 1;
-                    else output = 0;
-
-                    delta = desired[pn] - output;
-                    if (delta!=0)
-                    {
-                        for (int i = 0; i < patternLength; i++)
+                        v = 0.0;
+                        for (int i = 0; i < number_of_inputs; i++)
                         {
-                            wts[i] += learning_rate * delta * inputs[i];
+                            v += inputs[i] * wts[j, i];
                         }
-                        bias += learning_rate * delta;
-                        //MessageBox.Show("Changing Bias: " + bias);
+                        v += bias[j];
+                        if (v >= 0) outputs[j] = 1;
+                        else outputs[j] = 0;
+                        delta[j] = desired[pn, j] - outputs[j];
+
+                        if (delta[j] != 0)
+                        {
+                            for (int i = 0; i < number_of_inputs; i++)
+                            {
+                                wts[j, i] += learning_rate * delta[j] * inputs[i];
+                            }
+                            bias[j] = learning_rate * delta[j];
+                        }
+                        error += Math.Abs((int)delta[j]);
                     }
-                    error += Math.Abs((int)delta);
                 }
                 epochs++;
             }
@@ -138,8 +172,10 @@ namespace AlphabetPerceptron
         //test button
         private void testBtn_Click(object sender, EventArgs e)
         {
-            double v = 0;
-            int[] allInputs = new int[wts.Length];
+            double[] v = new double[number_of_neurons];
+            byte[] tempOutput = new byte[number_of_neurons];
+            int[] allInputs = new int[number_of_inputs];
+            bool characterFound = false;
             int counter = 0;
 
             //get all inputs for v
@@ -151,21 +187,132 @@ namespace AlphabetPerceptron
                     counter++;
                 }
             }
-            
+
             //calculate for v
-            for (int x=0; x<allInputs.Length; x++)
+            int i;
+            for (int j=0; j< number_of_neurons; j++)
+            {
+                v[j] = 0;
+                for (i=0; i<number_of_inputs; i++)
+                {
+                    v[j] += allInputs[i] * wts[j, i];
+                }
+                v[j] += bias[j];
+                if (v[j] >= 0) tempOutput[j] = 1;
+                else tempOutput[j] = 0;
+            }
+
+            string tempStr = "";
+            for (int j = 0; j < number_of_neurons; j++)
+            {
+                tempStr += tempOutput[j] + "";
+            }
+            if (trainFor== "CONSONANT_VOWEL")
+            {
+                if (tempStr == "00000001")
+                {
+                    MessageBox.Show("VOWEL");
+                }
+                else if (tempStr == "00000000")
+                {
+                    MessageBox.Show("CONSONANT");
+                }
+                else
+                {
+                    MessageBox.Show("Character not recognized.");
+                }
+            }
+            else if (trainFor == "CHARACTER")
+            {
+                for (int x=0; x<allAlphabet.Count; x++)
+                {
+                    if (tempStr == allAlphabet[x].strIndexOutput)
+                    {
+                        characterFound = true;
+                        MessageBox.Show("That letter is " + allAlphabet[x].letter + "!");
+                    }
+                }
+                if (!characterFound)
+                {
+                    MessageBox.Show("That letter can't be recognized.");
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string tempStr = "", tempDesired;
+            for (int x = 0; x < allAlphabet.Count; x++)
+            {
+                tempDesired = "";
+                for (int y = 0; y < allAlphabet[x].indexOutput.Length; y++)
+                {
+                    tempDesired += desired[x,y];
+                }
+                tempStr += "Letter: " + allAlphabet[x].letter + "\t\t";
+                tempStr += "Pattern: " + allAlphabet[x].pattern + "\t\t";
+                tempStr += "Desired: " + tempDesired + "\n";
+            }
+            MessageBox.Show(tempStr, "Letter, Pattern, and Desired Output");
+        }
+
+        private void changeDesiredBtn_Click(object sender, EventArgs e)
+        {
+            for (int x = 0; x < allAlphabet.Count; x++)
+            {
+                /*desired[x] = 0;
+                if (testLetter.Text.Length==1 && Char.ToLower(allAlphabet[x].letter) == Char.ToLower(Convert.ToChar(testLetter.Text)))
+                {
+                    desired[x] = 1;
+                }*/
+                for (int y = 0; y < allAlphabet[x].indexOutput.Length; y++)
+                {
+                    desired[x, y] = allAlphabet[x].indexOutput[y];
+                }
+            }
+        }
+
+        private void testLetterBtn_Click(object sender, EventArgs e)
+        {
+            /*double v = 0;
+            int[] allInputs = new int[wts.Length];
+            int counter = 0;
+
+            //get all inputs for v
+            for (int x = 0; x < 7; x++)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    allInputs[counter] = ((picBoxes[x, y]) ? 1 : 0);
+                    counter++;
+                }
+            }
+
+            //calculate for v
+            for (int x = 0; x < allInputs.Length; x++)
             {
                 v += allInputs[x] * wts[x];
             }
             v += bias;
 
-            if (v>=0)
+            if (v >= 0)
             {
-                MessageBox.Show("VOWEL (v>=0)");
+                MessageBox.Show("Yes, that is the letter " + testLetter.Text + ". " + v);
             }
             else
             {
-                MessageBox.Show("CONSONANT (v<0)");
+                MessageBox.Show("No, that is NOT the letter " + testLetter.Text + ". " + v);
+            }*/
+        }
+
+        private void trainVowelConsonant_Click(object sender, EventArgs e)
+        {
+            for (int x = 0; x < allAlphabet.Count; x++)
+            {
+                for (int y=0; y<allAlphabet[x].type.Length; y++)
+                {
+                    desired[x, y] = allAlphabet[x].type[y];
+                }
             }
         }
 
@@ -174,7 +321,7 @@ namespace AlphabetPerceptron
         {
             string[] lines = System.IO.File.ReadAllLines(@"Letters.txt");
             char tempLetter = ' ';
-            string tempType = "", tempPattern = "";
+            string tempPattern = "", tempIndexOutput = "", tempType = "";
             byte count = 0;
             Alphabet tempAlphabet;
             allAlphabet = new List<Alphabet>();
@@ -184,17 +331,20 @@ namespace AlphabetPerceptron
             {
                 if (count == 8)
                 {
-                    tempAlphabet = new Alphabet(tempLetter, tempType, tempPattern);
+                    tempAlphabet = new Alphabet(tempLetter, tempType, tempPattern, tempIndexOutput);
                     allAlphabet.Add(tempAlphabet);
                     //MessageBox.Show("" + tempAlphabet);
                     tempPattern = "";
+                    tempType = "";
+                    tempIndexOutput = "";
                     count = 0;
                     if (lines.Length == allAlphabet.Count * 8) break;
                 }
                 if (count == 0)
                 {
                     tempLetter = lines[x][0];
-                    tempType = lines[x].Substring(2);
+                    tempType = lines[x].Substring(2, 8);
+                    tempIndexOutput = lines[x].Substring(11,8);
                 }
                 else
                 {
@@ -539,90 +689,46 @@ namespace AlphabetPerceptron
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void desiredOutputVowelConsonantButton_Click(object sender, EventArgs e)
         {
-            string tempStr = "";
-            for (int x=0; x<allAlphabet.Count; x++)
-            {
-                tempStr += "Letter: " + allAlphabet[x].letter + "\t\t";
-                tempStr += "Pattern: " + allAlphabet[x].pattern + "\t\t";
-                tempStr += "Desired: " + desired[x] + "\n";
-            }
-            MessageBox.Show(tempStr, "Letter, Pattern, and Desired Output");
+            trainFor = "CONSONANT_VOWEL";
+            trainPerceptron();
         }
 
-        private void changeDesiredBtn_Click(object sender, EventArgs e)
+        private void desiredOutputCharacterRecognitionButton_Click(object sender, EventArgs e)
         {
-            for (int x=0; x<allAlphabet.Count; x++)
-            {
-                desired[x] = 0;
-                if (testLetter.Text.Length==1 && Char.ToLower(allAlphabet[x].letter) == Char.ToLower(Convert.ToChar(testLetter.Text)))
-                {
-                    desired[x] = 1;
-                }
-            }
-        }
-
-        private void testLetterBtn_Click(object sender, EventArgs e)
-        {
-            double v = 0;
-            int[] allInputs = new int[wts.Length];
-            int counter = 0;
-
-            //get all inputs for v
-            for (int x = 0; x < 7; x++)
-            {
-                for (int y = 0; y < 5; y++)
-                {
-                    allInputs[counter] = ((picBoxes[x, y]) ? 1 : 0);
-                    counter++;
-                }
-            }
-
-            //calculate for v
-            for (int x = 0; x < allInputs.Length; x++)
-            {
-                v += allInputs[x] * wts[x];
-            }
-            v += bias;
-
-            if (v >= 0)
-            {
-                MessageBox.Show("Yes, that is the letter " + testLetter.Text + ".");
-            }
-            else
-            {
-                MessageBox.Show("No, that is NOT the letter " + testLetter.Text + ".");
-            }
-        }
-
-        private void trainVowelConsonant_Click(object sender, EventArgs e)
-        {
-            for (int x = 0; x < allAlphabet.Count; x++)
-            {
-                desired[x] = 0;
-                if (allAlphabet[x].type == "Vowel")
-                {
-                    desired[x] = 1;
-                }
-            }
+            trainFor = "CHARACTER";
+            trainPerceptron();
         }
     }
 
     public class Alphabet
     {
         public char letter;
-        public string type, pattern;
-        public Alphabet(char letter, string type, string pattern)
+        public string pattern, strIndexOutput;
+        public byte[] indexOutput, type;
+        public Alphabet(char letter, string tempType, string pattern, string tempOutput)
         {
             this.letter = letter;
-            this.type = type;
             this.pattern = pattern;
+            this.type = new byte[8];
+            this.indexOutput = new byte[8];
+            this.strIndexOutput = tempOutput;
+            for (int x=0; x<tempOutput.Length; x++)
+            {
+                this.type[x] = (byte)(Convert.ToByte(tempType[x]) - 48);
+                this.indexOutput[x] = (byte)(Convert.ToByte(tempOutput[x]) - 48);
+            }
         }
         public override string ToString()
         {
-            string temp = "";
-            temp += "Letter: " + this.letter + "\nType: " + this.type + "\nPattern: " + this.pattern;
+            string temp = "", tempType="", tempIndexOutput = "";
+            for (int x=0; x<this.type.Length; x++)
+            {
+                tempType += this.type[x];
+                tempIndexOutput += this.indexOutput[x];
+            }
+            temp += "Letter: " + this.letter + "\nType: " + tempType + "\nIndex Output: " + tempIndexOutput + "\nPattern: " + this.pattern;
             return temp;
         }
     }

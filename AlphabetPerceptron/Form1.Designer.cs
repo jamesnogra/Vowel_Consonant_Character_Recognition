@@ -64,18 +64,13 @@
             this.p74 = new System.Windows.Forms.PictureBox();
             this.p75 = new System.Windows.Forms.PictureBox();
             this.testBtn = new System.Windows.Forms.Button();
-            this.trainBtn = new System.Windows.Forms.Button();
             this.resetBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.drawBtn = new System.Windows.Forms.Button();
             this.letterInput = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.testLetterBtn = new System.Windows.Forms.Button();
-            this.changeDesiredBtn = new System.Windows.Forms.Button();
-            this.testLetter = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.trainVowelConsonant = new System.Windows.Forms.Button();
+            this.showPatternsAndDesiredOutputButton = new System.Windows.Forms.Button();
+            this.desiredOutputCharacterRecognitionButton = new System.Windows.Forms.Button();
+            this.desiredOutputVowelConsonantButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.p11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p12)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p13)).BeginInit();
@@ -112,7 +107,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.p74)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.p75)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // p11
@@ -502,30 +496,22 @@
             // 
             // testBtn
             // 
-            this.testBtn.Location = new System.Drawing.Point(126, 318);
+            this.testBtn.BackColor = System.Drawing.Color.DarkGreen;
+            this.testBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.testBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.testBtn.Location = new System.Drawing.Point(237, 274);
             this.testBtn.Name = "testBtn";
-            this.testBtn.Size = new System.Drawing.Size(103, 38);
+            this.testBtn.Size = new System.Drawing.Size(245, 38);
             this.testBtn.TabIndex = 35;
-            this.testBtn.Text = "Test Vowel/Consonant";
-            this.testBtn.UseVisualStyleBackColor = true;
+            this.testBtn.Text = "TEST";
+            this.testBtn.UseVisualStyleBackColor = false;
             this.testBtn.Click += new System.EventHandler(this.testBtn_Click);
-            // 
-            // trainBtn
-            // 
-            this.trainBtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.trainBtn.Location = new System.Drawing.Point(10, 318);
-            this.trainBtn.Name = "trainBtn";
-            this.trainBtn.Size = new System.Drawing.Size(110, 38);
-            this.trainBtn.TabIndex = 36;
-            this.trainBtn.Text = "Train";
-            this.trainBtn.UseVisualStyleBackColor = false;
-            this.trainBtn.Click += new System.EventHandler(this.trainBtn_Click);
             // 
             // resetBtn
             // 
             this.resetBtn.Location = new System.Drawing.Point(235, 10);
             this.resetBtn.Name = "resetBtn";
-            this.resetBtn.Size = new System.Drawing.Size(231, 38);
+            this.resetBtn.Size = new System.Drawing.Size(247, 26);
             this.resetBtn.TabIndex = 37;
             this.resetBtn.Text = "Reset";
             this.resetBtn.UseVisualStyleBackColor = true;
@@ -535,9 +521,9 @@
             // 
             this.groupBox1.Controls.Add(this.drawBtn);
             this.groupBox1.Controls.Add(this.letterInput);
-            this.groupBox1.Location = new System.Drawing.Point(236, 55);
+            this.groupBox1.Location = new System.Drawing.Point(236, 42);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(230, 89);
+            this.groupBox1.Size = new System.Drawing.Size(246, 89);
             this.groupBox1.TabIndex = 38;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Draw Letter";
@@ -546,7 +532,7 @@
             // 
             this.drawBtn.Location = new System.Drawing.Point(7, 58);
             this.drawBtn.Name = "drawBtn";
-            this.drawBtn.Size = new System.Drawing.Size(217, 23);
+            this.drawBtn.Size = new System.Drawing.Size(233, 23);
             this.drawBtn.TabIndex = 1;
             this.drawBtn.Text = "Draw";
             this.drawBtn.UseVisualStyleBackColor = true;
@@ -557,90 +543,53 @@
             this.letterInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.letterInput.Location = new System.Drawing.Point(7, 16);
             this.letterInput.Name = "letterInput";
-            this.letterInput.Size = new System.Drawing.Size(217, 35);
+            this.letterInput.Size = new System.Drawing.Size(233, 35);
             this.letterInput.TabIndex = 0;
             this.letterInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // button1
+            // showPatternsAndDesiredOutputButton
             // 
-            this.button1.Location = new System.Drawing.Point(236, 266);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(231, 46);
-            this.button1.TabIndex = 39;
-            this.button1.Text = "Show Patterns and Desired Output";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.showPatternsAndDesiredOutputButton.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.showPatternsAndDesiredOutputButton.Location = new System.Drawing.Point(236, 150);
+            this.showPatternsAndDesiredOutputButton.Name = "showPatternsAndDesiredOutputButton";
+            this.showPatternsAndDesiredOutputButton.Size = new System.Drawing.Size(246, 30);
+            this.showPatternsAndDesiredOutputButton.TabIndex = 39;
+            this.showPatternsAndDesiredOutputButton.Text = "Show Patterns and Desired Output";
+            this.showPatternsAndDesiredOutputButton.UseVisualStyleBackColor = false;
+            this.showPatternsAndDesiredOutputButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // groupBox2
+            // desiredOutputCharacterRecognitionButton
             // 
-            this.groupBox2.Controls.Add(this.testLetterBtn);
-            this.groupBox2.Controls.Add(this.changeDesiredBtn);
-            this.groupBox2.Controls.Add(this.testLetter);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.Location = new System.Drawing.Point(236, 150);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(230, 110);
-            this.groupBox2.TabIndex = 40;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Custom Train";
+            this.desiredOutputCharacterRecognitionButton.BackColor = System.Drawing.Color.Coral;
+            this.desiredOutputCharacterRecognitionButton.Location = new System.Drawing.Point(237, 230);
+            this.desiredOutputCharacterRecognitionButton.Name = "desiredOutputCharacterRecognitionButton";
+            this.desiredOutputCharacterRecognitionButton.Size = new System.Drawing.Size(245, 38);
+            this.desiredOutputCharacterRecognitionButton.TabIndex = 40;
+            this.desiredOutputCharacterRecognitionButton.Text = "Train for Desired Output Character Recognition";
+            this.desiredOutputCharacterRecognitionButton.UseVisualStyleBackColor = false;
+            this.desiredOutputCharacterRecognitionButton.Click += new System.EventHandler(this.desiredOutputCharacterRecognitionButton_Click);
             // 
-            // testLetterBtn
+            // desiredOutputVowelConsonantButton
             // 
-            this.testLetterBtn.Location = new System.Drawing.Point(7, 80);
-            this.testLetterBtn.Name = "testLetterBtn";
-            this.testLetterBtn.Size = new System.Drawing.Size(217, 23);
-            this.testLetterBtn.TabIndex = 3;
-            this.testLetterBtn.Text = "Test Letter";
-            this.testLetterBtn.UseVisualStyleBackColor = true;
-            this.testLetterBtn.Click += new System.EventHandler(this.testLetterBtn_Click);
-            // 
-            // changeDesiredBtn
-            // 
-            this.changeDesiredBtn.Location = new System.Drawing.Point(7, 49);
-            this.changeDesiredBtn.Name = "changeDesiredBtn";
-            this.changeDesiredBtn.Size = new System.Drawing.Size(217, 25);
-            this.changeDesiredBtn.TabIndex = 2;
-            this.changeDesiredBtn.Text = "Change Desired Output to Custom Letter";
-            this.changeDesiredBtn.UseVisualStyleBackColor = true;
-            this.changeDesiredBtn.Click += new System.EventHandler(this.changeDesiredBtn_Click);
-            // 
-            // testLetter
-            // 
-            this.testLetter.Location = new System.Drawing.Point(81, 23);
-            this.testLetter.Name = "testLetter";
-            this.testLetter.Size = new System.Drawing.Size(143, 20);
-            this.testLetter.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Letter to Test";
-            // 
-            // trainVowelConsonant
-            // 
-            this.trainVowelConsonant.Location = new System.Drawing.Point(236, 318);
-            this.trainVowelConsonant.Name = "trainVowelConsonant";
-            this.trainVowelConsonant.Size = new System.Drawing.Size(231, 38);
-            this.trainVowelConsonant.TabIndex = 4;
-            this.trainVowelConsonant.Text = "Change Desired Output to Vowel/Consonant";
-            this.trainVowelConsonant.UseVisualStyleBackColor = true;
-            this.trainVowelConsonant.Click += new System.EventHandler(this.trainVowelConsonant_Click);
+            this.desiredOutputVowelConsonantButton.BackColor = System.Drawing.Color.Coral;
+            this.desiredOutputVowelConsonantButton.Location = new System.Drawing.Point(237, 186);
+            this.desiredOutputVowelConsonantButton.Name = "desiredOutputVowelConsonantButton";
+            this.desiredOutputVowelConsonantButton.Size = new System.Drawing.Size(245, 38);
+            this.desiredOutputVowelConsonantButton.TabIndex = 41;
+            this.desiredOutputVowelConsonantButton.Text = "Train for Desired Output Vowel/Consonant";
+            this.desiredOutputVowelConsonantButton.UseVisualStyleBackColor = false;
+            this.desiredOutputVowelConsonantButton.Click += new System.EventHandler(this.desiredOutputVowelConsonantButton_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(476, 362);
-            this.Controls.Add(this.trainVowelConsonant);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(488, 324);
+            this.Controls.Add(this.desiredOutputVowelConsonantButton);
+            this.Controls.Add(this.desiredOutputCharacterRecognitionButton);
+            this.Controls.Add(this.showPatternsAndDesiredOutputButton);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.resetBtn);
-            this.Controls.Add(this.trainBtn);
             this.Controls.Add(this.testBtn);
             this.Controls.Add(this.p75);
             this.Controls.Add(this.p74);
@@ -719,8 +668,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.p75)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -763,18 +710,13 @@
         private System.Windows.Forms.PictureBox p74;
         private System.Windows.Forms.PictureBox p75;
         private System.Windows.Forms.Button testBtn;
-        private System.Windows.Forms.Button trainBtn;
         private System.Windows.Forms.Button resetBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button drawBtn;
         private System.Windows.Forms.TextBox letterInput;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox testLetter;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button changeDesiredBtn;
-        private System.Windows.Forms.Button testLetterBtn;
-        private System.Windows.Forms.Button trainVowelConsonant;
+        private System.Windows.Forms.Button showPatternsAndDesiredOutputButton;
+        private System.Windows.Forms.Button desiredOutputCharacterRecognitionButton;
+        private System.Windows.Forms.Button desiredOutputVowelConsonantButton;
     }
 }
 
