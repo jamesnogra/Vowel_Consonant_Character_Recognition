@@ -210,11 +210,11 @@ namespace AlphabetPerceptron
             {
                 if (tempStr == "00000001")
                 {
-                    MessageBox.Show("VOWEL");
+                    MessageBox.Show("VOWEL (" + tempStr + ")");
                 }
                 else if (tempStr == "00000000")
                 {
-                    MessageBox.Show("CONSONANT");
+                    MessageBox.Show("CONSONANT (" + tempStr + ")");
                 }
                 else
                 {
@@ -228,7 +228,7 @@ namespace AlphabetPerceptron
                     if (tempStr == allAlphabet[x].strIndexOutput)
                     {
                         characterFound = true;
-                        MessageBox.Show("That letter is " + allAlphabet[x].letter + "!");
+                        MessageBox.Show("That letter is " + allAlphabet[x].letter + "! ("+tempStr+")");
                     }
                 }
                 if (!characterFound)
